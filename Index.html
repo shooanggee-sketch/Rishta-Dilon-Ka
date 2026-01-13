@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ur">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Site Builder — آسان، فری + 10% کمیشن</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- JSZip + FileSaver (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <!-- Stripe.js (load on page) -->
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+  <header>
+    <h1>AI Site Builder</h1>
+    <p>سادہ templates سے ویب سائٹ بنائیں — صارف API خرچ برداشت کریں، آپ 10% کمیشن لیں</p>
+  </header>
+
+  <main>
+    <section id="wizard">
+      <label>Template منتخب کریں:
+        <select id="templateSelect">
+          <option value="portfolio">Portfolio (simple)</option>
+          <option value="landing">Landing Page</option>
+        </select>
+      </label>
+
+      <label>Project Name:
+        <input id="projectName" placeholder="میرا پروجیکٹ" />
+      </label>
+
+      <label>Primary color:
+        <input id="primaryColor" type="color" value="#1f8ef1" />
+      </label>
+
+      <label>
+        Optional: Provide your AI provider API key (OpenAI/HF) — will be used client-side only:
+        <input id="providerKey" placeholder="sk-•••• (optional)" />
+      </label>
+
+      <div id="estimateBox">
+        <p>Provider estimate: <strong id="providerCost">$0.00</strong></p>
+        <p>Platform fee (10%): <strong id="platformFee">$0.00</strong></p>
+        <p>Total to pay: <strong id="totalCost">$0.00</strong></p>
+      </div>
+
+      <div class="actions">
+        <button id="estimateBtn">Estimate</button>
+        <button id="payBtn">Pay & Proceed (Stripe)</button>
+        <button id="generateBtn">Generate & Download (without paying)</button>
+      </div>
+
+      <div id="status"></div>
+    </section>
+
+    <section id="preview">
+      <h2>Preview</h2>
+      <iframe id="previewFrame" sandbox="allow-same-origin"></iframe>
+    </section>
+  </main>
+
+  <footer>
+    <small>نوٹ: ادائیگی Stripe کے ذریعے ہوتی ہے۔ provider API key اگر آپ گھر میں رکھتے ہیں تو browser میں ہی استعمال کریں — یہ اپ کی ذمہ داری ہوگی۔</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
